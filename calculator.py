@@ -3,8 +3,12 @@ calc = ''
 
 
 def main(page: ft.Page):
-    t = ft.Text(color='white', size=30)
+    page.title = 'Сalculator'
+    page.window_width = 300
+    page.window_height = 330
+    t = ft.TextField(value='0', color='white', width=266, border_color='DEEPPURPLE600', text_align=ft.TextAlign.RIGHT)
     page.add(t)
+
 
     def krapka(e):
         global calc
@@ -14,9 +18,9 @@ def main(page: ft.Page):
 
 
     def clear(e):
-        global calc
-        calc = ''
-        t.value = calc
+        # global calc
+        # calc = ''
+        t.value = '0'
         page.update()
 
     def n1(e):
@@ -88,6 +92,8 @@ def main(page: ft.Page):
     def minus(e):
         global calc
         calc += '-'
+        t.value = calc
+        page.update()
 
     def division(e):
         global calc
@@ -173,6 +179,5 @@ def main(page: ft.Page):
 
 
     page.update()
-
 if __name__ == '__main__':
     ft.app(target=main)
