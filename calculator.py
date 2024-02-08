@@ -1,4 +1,5 @@
 import flet as ft
+
 calc = ''
 
 
@@ -6,7 +7,7 @@ def main(page: ft.Page):
     page.title = 'Сalculator'
     page.window_width = 300
     page.window_height = 330
-    t = ft.TextField(value='0', color='white', width=266, border_color='DEEPPURPLE600', text_align=ft.TextAlign.RIGHT)
+    t = ft.TextField(value='', color='white', width=266, border_color='DEEPPURPLE600', text_align=ft.TextAlign.RIGHT)
     page.add(t)
 
 
@@ -18,16 +19,16 @@ def main(page: ft.Page):
 
 
     def clear(e):
-        # global calc
-        # calc = ''
-        t.value = '0'
+        t.value = ''
         page.update()
+
 
     def n1(e):
         global calc
         calc += '1'
-        t.value = calc
+        t.value += calc
         page.update()
+
 
     def n2(e):
         global calc
@@ -35,11 +36,13 @@ def main(page: ft.Page):
         t.value = calc
         page.update()
 
+
     def n3(e):
         global calc
         calc += '3'
         t.value = calc
         page.update()
+
 
     def n4(e):
         global calc
@@ -47,11 +50,13 @@ def main(page: ft.Page):
         t.value = calc
         page.update()
 
+
     def n5(e):
         global calc
         calc += '5'
         t.value = calc
         page.update()
+
 
     def n6(e):
         global calc
@@ -59,11 +64,13 @@ def main(page: ft.Page):
         t.value = calc
         page.update()
 
+
     def n7(e):
         global calc
         calc += '7'
         t.value = calc
         page.update()
+
 
     def n8(e):
         global calc
@@ -71,11 +78,13 @@ def main(page: ft.Page):
         t.value = calc
         page.update()
 
+
     def n9(e):
         global calc
         calc += '9'
         t.value = calc
         page.update()
+
 
     def n0(e):
         global calc
@@ -83,11 +92,13 @@ def main(page: ft.Page):
         t.value = calc
         page.update()
 
+
     def plus(e):
         global calc
         calc += '+'
         t.value = calc
         page.update()
+
 
     def minus(e):
         global calc
@@ -95,17 +106,21 @@ def main(page: ft.Page):
         t.value = calc
         page.update()
 
+
     def division(e):
         global calc
         calc += '/'
         t.value = calc
         page.update()
 
+
     def mult(e):
         global calc
         calc += '*'
         t.value = calc
         page.update()
+
+
     def step(e):
         global calc
         calc += '**2'
@@ -133,13 +148,22 @@ def main(page: ft.Page):
 
     def result(e):
         global calc
-        if len(calc) > 0:
-            calc = eval(calc)
-            t.value = round(calc, 3)
+        if '/0' in t.value:
+            t.value = 'ERROR'
             page.update()
             calc = ''
         else:
-            print('eror')
+            if len(t.value) > 0:
+                t.value = eval(t.value)
+                page.update()
+                calc = ''
+
+            if len(calc) > 0:
+                calc = eval(calc)
+                t.value = round(calc, 6)
+                page.update()
+                calc = ''
+
 
     page.add(ft.Row([
         ft.ElevatedButton('π', on_click=pi, bgcolor='DEEPPURPLE600'),
